@@ -1,0 +1,35 @@
+try {
+            String sql = "UPDATE support SET shopName=?,supportBy=?,Notes=?,suggestion=?,"
+                    + "date=?,hours=?,status=?,title=? WHERE CustNo ='"+jLabel_SupCustNo.getText()+"' and supId = '"+jLabel_displaySupId.getText()+"' ";
+            
+             PreparedStatement pst = con.prepareStatement(sql);     
+            pst.setString(1, jTextField_shopName.getText());
+            String supportBy = jComboBox_supportBy.getSelectedItem().toString();
+            pst.setString(2, supportBy);            
+            pst.setString(3, jTextArea_Notes.getText());
+            pst.setString(4, jTextArea_suggestion.getText());  
+            String date = sdf.format(jDateChooser_date.getDate());
+            pst.setString(5,date);  
+            pst.setString(6, jTextField_hours.getText());
+            String status = jComboBox_status.getSelectedItem().toString();
+            pst.setString(7, status);
+            String title = jComboBox_titla.getSelectedItem().toString();
+            pst.setString(8, title);
+            
+            pst.executeUpdate();
+          
+            JOptionPane.showMessageDialog(null,"Updated Successfully..!!");
+            
+            jTextArea_Notes.setText("");
+            jTextArea_suggestion.setText("");
+            jTextField_shopName.setText("");
+            jTextField_hours.setText("");
+            jComboBox_supportBy.setSelectedIndex(0);
+            jComboBox_status.setSelectedIndex(0);
+            jComboBox_titla.setSelectedIndex(0);
+            jDateChooser_date.setDate(null);
+             
+        } 
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Customer_Management support update \n" + e);
+        }
