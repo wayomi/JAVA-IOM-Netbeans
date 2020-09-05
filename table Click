@@ -1,0 +1,17 @@
+//Action table mouse click - row click
+
+try {
+            int i = jTable_supportTable.getSelectedRow();
+            Date date =(Date) new SimpleDateFormat("yyyy-MM-dd").parse((String) jTable_supportTable.getValueAt(i,6));
+            jDateChooser_date.setDate(date); //supId
+            jLabel_displaySupId.setText(jTable_supportTable.getValueAt(i, 0).toString());
+            jTextField_shopName.setText(jTable_supportTable.getValueAt(i, 2).toString());
+            jComboBox_supportBy.getModel().setSelectedItem(jTable_supportTable.getValueAt(i,3));
+            jTextArea_Notes.setText(jTable_supportTable.getValueAt(i, 4).toString());
+            jTextArea_suggestion.setText(jTable_supportTable.getValueAt(i, 5).toString());
+            jTextField_hours.setText(jTable_supportTable.getValueAt(i, 7).toString());
+            jComboBox_status.getModel().setSelectedItem(jTable_supportTable.getValueAt(i,8));
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, " Support table click \n" +e);
+        }
