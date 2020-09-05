@@ -1,0 +1,35 @@
+//This is the code for the login button
+/** user is the table name
+/** Login to the ticket card page
+
+try{
+
+            String sql = "select * from user where Name=? and password=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1,jTextField_Username.getText());
+            pst.setString(2, jPasswordField.getText());
+            ResultSet rs = pst.executeQuery();
+
+            if(rs.next())
+            {
+                //JOptionPane.showMessageDialog(null,"Username and Password Successfully Matched..!!");
+                TicketCard h1 = new TicketCard();
+                h1.setVisible(true);
+                setVisible(false);
+                              
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"Username and Password Not Matched..!!");
+                jTextField_Username.setText("");
+                jPasswordField.setText("");
+            }
+            //con.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+            jTextField_Username.setText("");
+                jPasswordField.setText("");
+        }
+       
