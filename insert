@@ -1,0 +1,45 @@
+if(jCheckBox_CustomerDisplay.isSelected()== true)
+        {
+            CustomerDisplay = "1";
+        }
+        else{
+            CustomerDisplay = "0";
+        }
+//When have a checkbox
+try {
+            String sql = "INSERT INTO support (shopName, supportBy, Notes, suggestion, date, hours, status, title,CustNo) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?)";
+            
+            PreparedStatement pst = con.prepareStatement(sql);
+                                
+            pst.setString(1, jTextField_shopName.getText());
+            String supportBy = jComboBox_supportBy.getSelectedItem().toString();
+            pst.setString(2, supportBy);            
+            pst.setString(3, jTextArea_Notes.getText());
+            pst.setString(4, jTextArea_suggestion.getText());  
+            String date = sdf.format(jDateChooser_date.getDate());
+            pst.setString(5,date);  
+            pst.setString(6, jTextField_hours.getText());
+            String status = jComboBox_status.getSelectedItem().toString();
+            pst.setString(7, status);
+            String title = jComboBox_titla.getSelectedItem().toString();
+            pst.setString(8, title);
+            pst.setString(9,jLabel_SupCustNo.getText());
+             pst.executeUpdate();
+          
+            JOptionPane.showMessageDialog(null,"Inserted Successfully..!!");
+            
+            jTextArea_Notes.setText("");
+            jTextArea_suggestion.setText("");
+            jTextField_shopName.setText("");
+            jTextField_hours.setText("");
+            jComboBox_supportBy.setSelectedIndex(0);
+            jComboBox_status.setSelectedIndex(0);
+            jComboBox_titla.setSelectedIndex(0);
+            jDateChooser_date.setDate(null);
+            
+            
+        } 
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Customer_Management support insert \n" + e);
+        }
